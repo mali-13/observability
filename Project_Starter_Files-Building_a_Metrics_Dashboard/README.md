@@ -15,6 +15,10 @@ Expose Grafana to the internet and then setup Prometheus as a data source.
 ```bash
 kubectl -n monitoring port-forward svc/prometheus-grafana --address 0.0.0.0 3000:80
 ```
+Expose Jaeger:
+```bash
+kubectl -n observability port-forward svc/jaeger-query --address 0.0.0.0 16686:16686
+```
 
 ![Grafana Dashboard](./answer-img/grafana-dashboard.png)
 
@@ -31,7 +35,19 @@ kubectl -n monitoring port-forward svc/prometheus-grafana --address 0.0.0.0 3000
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
 
 ## Tracing our Flask App
-*TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
+Use the tracer to create and populate a span:
+```
+@app.route("/api")
+def my_api():
+    with tracer.start_span('GET /api') as span:
+        span.set_tag('http.method', 'GET /api')
+        answer = "something"
+        span.set_baggage_item('answer', answer)
+        return jsonify(repsonse=answer)
+```
+
+View the trace in Jaeger UI:
+![Jaeger Trace](./answer-img/jaeger-trace.png)
 
 ## Jaeger in Dashboards
 *TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.

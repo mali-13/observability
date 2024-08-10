@@ -3,6 +3,29 @@ from flask import Flask, render_template, request, jsonify
 import pymongo
 from flask_pymongo import PyMongo
 
+import logging
+from jaeger_client import Config
+from opentracing.ext import tags
+from opentracing.propagation import Format
+
+def init_tracer(service):
+    logging.getLogger('').handlers = []
+    logging.basicConfig(format='%(message)s', level=logging.DEBUG)
+    config = Config(
+        config={
+            'sampler': {
+                'type': 'const',
+                'param': 1,
+            },
+            'logging': True,
+        },
+        service_name=service,
+    )
+    # this call also sets opentracing.tracer
+    return config.initialize_tracer()
+
+tracer = init_tracer('backend-service')
+
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = "example-mongodb"
@@ -20,8 +43,11 @@ def homepage():
 
 @app.route("/api")
 def my_api():
-    answer = "something"
-    return jsonify(repsonse=answer)
+    with tracer.start_span('GET /api') as span:
+        span.set_tag('http.method', 'GET /api')
+        answer = "something"
+        span.set_baggage_item('answer', answer)
+        return jsonify(repsonse=answer)
 
 
 @app.route("/star", methods=["POST"])
