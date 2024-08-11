@@ -19,8 +19,11 @@ Expose Jaeger:
 ```bash
 kubectl -n observability port-forward svc/jaeger-query --address 0.0.0.0 16686:16686
 ```
-
+Dashboards:
 ![Grafana Dashboard](./answer-img/grafana-dashboard.png)
+
+Data sources:
+![Jaeger Datasource](./answer-img/grafana-data-sources.png)
 
 ## Create a Basic Dashboard
 *TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
@@ -50,25 +53,33 @@ View the trace in Jaeger UI:
 ![Jaeger Trace](./answer-img/jaeger-trace.png)
 
 ## Jaeger in Dashboards
-*TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
+Explore traces in grafana:
+![Explore Jaeger](./answer-img/jaeger-trace-grafana.png)
 
+Trace duration in Grafana"
+![Grafana Trace Duration](./answer-img/jaeger-trace-duration.png)
 ## Report Error
-*TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
 
 TROUBLE TICKET
 
-Name:
+Name: 
+Slow GET /api 
 
-Date:
+Date: 
+11 Aug 2024
 
-Subject:
+Subject: 
+Improve performance of GET /api endpoint
 
-Affected Area:
+Affected Area: 
+Endpoint GET /api
 
-Severity:
+Severity: 
+Warning
 
 Description:
-
+In the requests duration dashboard for `GET /api`, we are seeing ample slow requests(>5ms).
+One example is trace d503c82. Investigate why users are experiencing latency here and see if we can come up with performance improvements
 
 ## Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
