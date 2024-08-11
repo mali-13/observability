@@ -1,5 +1,3 @@
-**Note:** For the screenshots, you can store all of your answer images in the `answer-img` directory.
-
 ## Verify the monitoring installation
 
 Running pods and services for all components:
@@ -26,7 +24,8 @@ Data sources:
 ![Jaeger Datasource](./answer-img/grafana-data-sources.png)
 
 ## Create a Basic Dashboard
-*TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
+
+![Basic Dashboard](./answer-img/grafana-simple-prometheus-dashboard.png)
 
 ## Describe SLO/SLI
 *TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
