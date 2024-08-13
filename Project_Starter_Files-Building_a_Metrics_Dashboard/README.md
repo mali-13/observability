@@ -28,10 +28,24 @@ Data sources:
 ![Basic Dashboard](./answer-img/grafana-simple-prometheus-dashboard.png)
 
 ## Describe SLO/SLI
-*TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
+Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
+
+Monthly uptime:
+    The monthly uptime for the backend service is 95.00%, the target is 99.99%.
+    The monthly uptime for the frontend service is 99.95%, the target is 99.99%.
+
+Response time:
+    The average request response time for the backend service is 70ms, the target is <50ms
+    The max request response time for the backend service is 200ms, the target is <300ms
 
 ## Creating SLI metrics.
-*TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+It is important to know why we want to measure certain metrics for our customers. Describe in detail 5 metrics to measure these SLIs. 
+ 
+ - uptime - the time the service was running and reachable in a period e.g. month
+ - latency - the duration the service took to service a user request
+ - error count and failure rate - times an error occurred in a period or the time the error occurred from all occurrences(error frequency) 
+ - resource saturation - CPU or Memory utilization is usually expressed as a percentage of CPU or Memory usage.
+ - traffic - the number of requests per second reaching the service
 
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
