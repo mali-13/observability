@@ -95,10 +95,17 @@ In the requests duration dashboard for `GET /api`, we are seeing ample slow requ
 One example is trace d503c82. Investigate why users are experiencing latency here and see if we can come up with performance improvements
 
 ## Creating SLIs and SLOs
-*TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
+We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
+- The monthly uptime for the backend service is 95.00%, the target is 99.95%.
+- The monthly uptime for the frontend service is 99.95%, the target is 99.95%.
+- The Average Resource usage of the computer where the app is 75%
+- Requests per second 10, the target is <15
 
 ## Building KPIs for our plan
-*TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
+Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first, write them down here.
+- Requests per second - Shows the expected and actual amount of traffic. If the actual amount exceeds the expected amount new resources must be purchased. 
+- The Average CPU and Memory usage of the computer where the app is running is CPU: 20%(target <80%), Memory: 67%(target <90%) - This will show if the current infrastructure meets the load requirements. If not the resources need to be scaled.
+- Error rate - will show if there are application errors or there is a shortage of resources to meet the load
 
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
