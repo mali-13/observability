@@ -13,10 +13,6 @@ Expose Grafana to the internet and then setup Prometheus as a data source.
 ```bash
 kubectl -n monitoring port-forward svc/prometheus-grafana --address 0.0.0.0 3000:80
 ```
-Expose Jaeger:
-```bash
-kubectl -n observability port-forward svc/jaeger-query --address 0.0.0.0 16686:16686
-```
 Dashboards:
 ![Grafana Dashboard](./answer-img/grafana-dashboard.png)
 

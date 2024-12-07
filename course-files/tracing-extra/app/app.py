@@ -46,21 +46,24 @@ def hello_world():
 
 @app.route("/alpha")
 def alpha():
-    for i in range(100):
-        do_heavy_work()  # removed the colon here since it caused a syntax error - not sure about its purpose?
-        if i % 100 == 99:
-            time.sleep(10)
-    return "This is the Alpha Endpoint!"
+    with tracer.start_span('alpha') as span:
+        for i in range(100):
+            do_heavy_work()  # removed the colon here since it caused a syntax error - not sure about its purpose?
+            if i % 100 == 99:
+                time.sleep(10)
+        return "This is the Alpha Endpoint!"
 
 
 @app.route("/beta")
 def beta():
-    r = requests.get("https://www.google.com/search?q=python")
-    dict = {}
-    for key, value in r.headers.items():
-        print(key, ":", value)
-        dict.update({key: value})
-    return jsonify(dict)
+    with tracer.start_span('get-python-jobs') as span:
+        r = requests.get("https://www.google.com/search?q=python")
+        span.set_tag('result-count', len(r.headers.items()))
+        dict = {}
+        for key, value in r.headers.items():
+            print(key, ":", value)
+            dict.update({key: value})
+        return jsonify(dict)
 
 
 @app.route(
