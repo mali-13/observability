@@ -44,8 +44,8 @@ It is important to know why we want to measure certain metrics for our customers
  - traffic - the number of requests per second reaching the service
 
 ## Create a Dashboard to measure our SLIs
-*TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
-
+Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
+![Uptime and Status](./answer-img/uptime-and-status.png)
 ## Tracing our Flask App
 Use the tracer to create and populate a span:
 ```
@@ -104,4 +104,12 @@ Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately meas
 - Error rate - will show if there are application errors or there is a shortage of resources to meet the load
 
 ## Final Dashboard
-*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.
+![Final Dashboard](./answer-img/final-dashboard.png)
+ - 
+ - Uptime in percentage(duration the backend and fronted were reachable)
+ - Request status percentage(5xx and 4xx divided by total request count)
+ - Request duration stats(average, min, max and total requests)
+ - Request status count
+ - Duration as time series of the `GET /api` endpoint
+

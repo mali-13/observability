@@ -44,11 +44,11 @@ def homepage():
 @app.route("/api")
 def my_api():
     with tracer.start_span('GET /api') as span:
-        span.set_tag('http.method', 'GET /api')
-        span.set_tag('http.status_code', 200)
+        span.set_tag('http.method', 'GET')
+        span.set_tag('http.response.status_code', '200')
         answer = "something"
         span.set_baggage_item('answer', answer)
-        return jsonify(repsonse=answer)
+        return jsonify(response=answer)
 
 
 @app.route("/star", methods=["POST"])
